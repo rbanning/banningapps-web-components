@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Web Components</title>
+  <link rel="stylesheet" href="./styles/main.scss">
+</head>
+<body>
+  <header>
+    <h1>Sample Web Components</h1>
+    <p>attempt 1</p>  
+  </header>
+  <section>
+    <h2>Message</h2>
+    <pre id="message"></pre>
+  </section>
+  <section>
+    <h2>Web Components</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+      <ba-tooltip>This is a basic (default) tooltip</ba-tooltip>
+      Nisi eum corrupti suscipit soluta. Recusandae, 
+      <ba-tooltip id="fancy-tooltip" tip_background="#f0f8ff" tip_color="#FF5733">This is a fancy tooltip</ba-tooltip>
+      nostrum reprehenderit earum perspiciatis necessitatibus 
+      tempora odio aut tenetur magni quam quos placeat esse quasi expedita.
+    </p>
+    <p>
+      <button type="button" id="toggleFancyTooltipAttr">Toggle Fancy Tip (using attributes)</button>
+      <button type="button" id="toggleFancyTooltipMeth">Toggle Fancy Tip (using method)</button>
+    </p>
+  </section>
+
+  <script src="app/app.ts" type="module"></script>
+</body>
+</html>

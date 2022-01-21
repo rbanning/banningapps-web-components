@@ -1,0 +1,12 @@
+{
+  "include": ["src/app/**/*"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "commonjs",
+    "strict": true,
+    "experimentalDecorators": true,
+    "jsxImportSource": "preact",
+    "isolatedModules": true
+  }
+}

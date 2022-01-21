@@ -1,0 +1,36 @@
+{
+  "name": "banningapps-web-components",
+  "version": "1.0.0",
+  "description": "Sample Web Components (by Banning Applications)",
+  "scripts": {
+    "serve": "parcel ./src/index.html",
+    "watch": "parcel watch ./src/index.html",
+    "build": "parcel build ./src/index.html",
+    "start": "npm run serve && npm run watch",
+    "test": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbanning/banningapps-web-components.git"
+  },
+  "keywords": [
+    "sample",
+    "banning-apps",
+    "typescript"
+  ],
+  "author": "Rob Banning",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbanning/banningapps-web-components/issues"
+  },
+  "homepage": "https://github.com/rbanning/banningapps-web-components#readme",
+  "browserslist": "> 0.5%, last 2 version, not dead",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.7.0",
+    "parcel": "^2.2.1",
+    "typescript": "^4.5.5"
+  }
+}

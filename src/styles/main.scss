@@ -1,0 +1,28 @@
+
+
+//SOME BASIC STYLES
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;    //browser specific
+  font-size: 20px;            //base size
+  color: rgba(0,0,0, 0.8);  //off black
+}
+
+a {
+  display: inline-block;
+  color: orange;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease-out;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+header, section {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 90%;
+}
