@@ -43,7 +43,7 @@ template.innerHTML = `
       font-size: 0.8em;
       transform: scale(0);
       transform-origin: bottom left;
-      transition: transform .5s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+      transition: transform .5s cubic-bezier(0.65, 0, 0.70, 1);
      }
   </style>
   
