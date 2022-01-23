@@ -39,3 +39,12 @@ footer {
 .container {
   margin: 1em 0;
 }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  & > * {
+    margin: 0.5em;
+    border: solid 1px black;
+  }
+}
