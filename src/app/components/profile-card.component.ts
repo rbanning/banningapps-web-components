@@ -52,6 +52,8 @@ export class ProfileCardComponent extends HTMLElement {
     this.setFullName(this.getAttribute('name'));
     this.setProfileImage(this.getAttribute('image'));
     
+    //content
+    this.setContent();
   }
 
   //Invoked when an attribute is added, removed, or changed 
@@ -68,12 +70,6 @@ export class ProfileCardComponent extends HTMLElement {
         break;
     }
   }
-
-
-  
-
-
-
 
   getTheme(): string {
     let ret: string | null = "";
@@ -135,6 +131,14 @@ export class ProfileCardComponent extends HTMLElement {
     return this.shadowRoot?.querySelector('img.profile-image') as HTMLImageElement;
   }
 
+  setContent() {
+    const content = this.getContentElement();
+    if (content) {
+      const template = this.querySelector('template');
+      content.innerHTML = template?.innerHTML || this.innerHTML;
+    }
+  }
+
   //public method to show the profile information.
   //if showProfile is not provided (or null), then the 
   //component's  is 
@@ -143,7 +147,7 @@ export class ProfileCardComponent extends HTMLElement {
 
     const wrapper = this.getWrapperElement();
     wrapper?.classList.toggle("detail", this._isDetailView);
-}
+  }
 
   private getBtnInfoElement(): HTMLElement {
     return this.shadowRoot?.querySelector('.btn-info') as HTMLElement;

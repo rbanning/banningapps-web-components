@@ -81,8 +81,8 @@ export const buildProfileCardTemplate = (colors: any): HTMLTemplateElement => {
 
         .btn-info {
           position: absolute;
-          top: 0;
-          right: 0;
+          top: 0.2em;
+          right: 0.2em;
           margin: 2px;
           padding: 2px;
           width: 40px;
@@ -114,15 +114,21 @@ export const buildProfileCardTemplate = (colors: any): HTMLTemplateElement => {
           padding: 3em 0.5em 0.5em 0.5em;
           box-sizing: border-box;
           background: rgba(0,0,0, 0.1);
-
+          font-size: 0.85em;
+          overflow: auto;
+          
           opacity: 0;
           transition: opacity 0.5s ease;
+        }
+        .content p {
+          margin: 0 0 1em 0;
         }
 
         .detail > .heading > .profile-image {
           opacity: 0;
         }
         .detail > .heading > .full-name {
+          color: #ffffff;
           animation: animateRibbonUp 0.5s forwards;
         }
         .detail > .heading > .full-name::before {
@@ -132,6 +138,10 @@ export const buildProfileCardTemplate = (colors: any): HTMLTemplateElement => {
           opacity: 1;
         }
 
+        .detail > .btn-info {
+          border-width: 3px;
+          top: 2em;
+        }
         .detail > .btn-info > img.info { display: none; }
         .detail > .btn-info > img.close { display: block; }
                 
@@ -169,19 +179,14 @@ export const buildProfileCardTemplate = (colors: any): HTMLTemplateElement => {
     const htmlSection = `
     <div class="wrapper">
       <div class="heading">
-        <span class="full-name">Full Name</span>
+        <span class="full-name"></span>
         <img class="profile-image" src="https://picsum.photos/200" alt="placeholder" />
       </div>
       <button type="button" class="btn-info">
         <img class="info" src="/icons/profile-card-icon.info.png" alt="information icon" />
         <img class="close" src="/icons/profile-card-icon.close.png" alt="close icon" />
       </button>
-      <div class="content">
-        <p>This is where the content will live!</p>
-        <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed pariatur praesentium eius ullam accusamus vitae placeat voluptatibus optio eligendi nostrum. Aut numquam rerum illum ut pariatur nemo maxime ex sapiente.
-        </p>
-      </div>
+      <div class="content"></div>
     </div>
     `;  //end html
 
