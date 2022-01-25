@@ -10,7 +10,6 @@
 <body>
   <header>
     <h1>Sample Web Components</h1>
-    <p>attempt 1</p>  
   </header>
   <section>
     <h2>Message</h2>
@@ -37,10 +36,34 @@
       <h3>Profiles</h3>
 
       <div class="cards">
-        <ba-profile-card></ba-profile-card>
-        <ba-profile-card></ba-profile-card>
-        <ba-profile-card></ba-profile-card>
-        <ba-profile-card></ba-profile-card>
+        <ba-profile-card 
+          theme="blue" 
+          name="Arcadia National Park"
+          image="parks/national-park-arcadia.jpg">
+          <template>
+  
+          </template>
+        </ba-profile-card>
+        <ba-profile-card 
+          theme="orange" 
+          name="Arches National Park"
+          image="parks/national-park-arches.jpg"></ba-profile-card>
+        <ba-profile-card 
+          theme="purple" 
+          name="Canyonlands National Park"
+          image="parks/national-park-canyonlands.jpg"></ba-profile-card>
+        <ba-profile-card 
+          theme="black" 
+          name="Glacier National Park"
+          image="parks/national-park-glacier.jpg"></ba-profile-card>
+        <ba-profile-card 
+          theme="red" 
+          name="Grand Canyon National Park"
+          image="parks/national-park-grand-canyon.jpg"></ba-profile-card>
+        <ba-profile-card 
+          theme="green" 
+          name="Yosemite National Park"
+          image="parks/national-park-yosemite.jpg"></ba-profile-card>
       </div>
 
     </div>

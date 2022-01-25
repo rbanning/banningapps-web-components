@@ -2,53 +2,71 @@ export const buildProfileCardTemplate = (colors: any): HTMLTemplateElement => {
   //build the profile heading color based styles
   const headingColorStyles = Object.getOwnPropertyNames(colors)
     .map(color => `
-      .heading.${color} > .full-name {
+      .wrapper.${color} > .heading > .full-name {
         border-left: solid 1em ${colors[color]};
         background: ${colors[color]};
       }
-      .heading.${color} > .full-name::before {
+      .wrapper.${color} > .heading > .full-name::before {
         border-right-color: ${colors[color]};
         border-bottom-color: ${colors[color]};
       }
-      .heading.${color} > .btn-info {
+      .wrapper.${color} > .btn-info {
         background: ${colors[color]};
       }
     `).join(' ');
 
+    const sizes = {
+      width: '400px',
+      height: '400px',
+      ribbon: '1em'
+    };
+
     const styleSection = `
       <style>
-        :host {
+        .wrapper {
+          position: relative;
+          
+          width: 100%;
+          max-width: ${sizes.width};
+          height: auto;
+          max-height: ${sizes.height};
+
           margin: 1em;
           padding: 0;
         }
         
         .heading {
           position: relative;
-          display: flex;
-          flex-direction: column;
+          display: block;
           width: 100%;
+          height: 100%;
+          z-index: 5;
         }
         .heading > .profile-image {
-          order: 1;
           display: block;
           width: 100%;
           height: auto;
+          opacity: 1;
+          transition: opacity 0.5s ease;
         }
         .heading > .full-name {
-          position: relative;
-          order: 2;
+          position: absolute;
+          left: -${sizes.ribbon};
+          border-left: solid ${sizes.ribbon} transparent;
+          
           width: 100%;
           padding: 0.5em 0;
-          border-left: solid 1em transparent;
-          margin-left: -1em;
           background: transparent;
           color: rgba(255,255,255, 0.8);
+          box-shadow: 3px 3px 6px rgba(0,0,0, 0.2);
+
+          animation: animateRibbonDown 0.5s forwards;
         }
         .heading > .full-name::before {
           content: ' ';
           position: absolute;
-          top: -1em;
-          left: -1em;
+          top: -${sizes.ribbon};
+          left: -${sizes.ribbon};
           width: 0; 
           height: 0; 
           border: solid 0.5em; 
@@ -58,44 +76,113 @@ export const buildProfileCardTemplate = (colors: any): HTMLTemplateElement => {
 
           opacity: 0.8;
           filter: brightness(0.8);
+          transition: opacity 0.3s ease;
         }
 
-        .heading > .btn-info {
+        .btn-info {
           position: absolute;
           top: 0;
           right: 0;
           margin: 2px;
           padding: 2px;
-          width: 32px;
-          height: 32px;
+          width: 40px;
+          height: 40px;
           overflow: hidden;
           border-radius: 50%;
           border: solid 2px #ffffff;
-          cursor pointer;
-          z-index: 10;
+          cursor: pointer;
+          z-index: 15;
         }
 
-        .heading > .btn-info > img {
+        .btn-info > img {
           display: block;
           width: 100%;
           height: auto;
+          box-sizing: border-box;
         }
-        
+        img.info { display: block }
+        img.close { display: none; }
+
         ${headingColorStyles}
+
+        .content {
+          position: absolute;
+          top: 0; left: 0;
+          display: block;
+          z-index: 10;
+          width: 100%; height: 100%;
+          padding: 3em 0.5em 0.5em 0.5em;
+          box-sizing: border-box;
+          background: rgba(0,0,0, 0.1);
+
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+
+        .detail > .heading > .profile-image {
+          opacity: 0;
+        }
+        .detail > .heading > .full-name {
+          animation: animateRibbonUp 0.5s forwards;
+        }
+        .detail > .heading > .full-name::before {
+          opacity: 0;
+        }
+        .detail > .content {
+          opacity: 1;
+        }
+
+        .detail > .btn-info > img.info { display: none; }
+        .detail > .btn-info > img.close { display: block; }
+                
+        @keyframes animateRibbonUp {
+          0% {
+            top: 100%;
+            bottom: 0;
+          }
+          99% {
+            top: 0;
+            bottom: 90%;
+          }
+          100% {
+            top: 0;
+            bottom: auto;
+          }
+        }
+
+        @keyframes animateRibbonDown {
+          0% {
+            top: 0;
+            bottom: auto;
+          }
+          1% {
+            top: auto;
+            bottom: 99%;
+          }
+          100% {
+            bottom: 0;
+          }
+        }
       </style>
     `;  //end style
 
     const htmlSection = `
+    <div class="wrapper">
       <div class="heading">
         <span class="full-name">Full Name</span>
         <img class="profile-image" src="https://picsum.photos/200" alt="placeholder" />
-        <button type="button" class="btn-info">
-          <img src="/icons/profile-card-icon.info.png" alt="information icon" />
-        </button>
       </div>
+      <button type="button" class="btn-info">
+        <img class="info" src="/icons/profile-card-icon.info.png" alt="information icon" />
+        <img class="close" src="/icons/profile-card-icon.close.png" alt="close icon" />
+      </button>
       <div class="content">
-        This is where the content will live!
+        <p>This is where the content will live!</p>
+        <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed pariatur praesentium eius ullam accusamus vitae placeat voluptatibus optio eligendi nostrum. Aut numquam rerum illum ut pariatur nemo maxime ex sapiente.
+        </p>
       </div>
+    </div>
     `;  //end html
 
     const template = document.createElement('template');

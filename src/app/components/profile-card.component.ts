@@ -15,6 +15,7 @@ const template = buildProfileCardTemplate(colors);
 let counter = 0;
 
 export class ProfileCardComponent extends HTMLElement {
+  
   get theme() { return this.getTheme(); }
   set theme(value: string) { this.setTheme(value); }
 
@@ -24,7 +25,9 @@ export class ProfileCardComponent extends HTMLElement {
   get profileImage() { return this.getProfileImage(); }
   set profileImage(value: string) { this.setProfileImage(value); }
 
-
+  private _isDetailView = false;
+  get isDetailView() { return this._isDetailView; }
+  set isDetailView(value: boolean) { this.toggleDetailView(value); }
 
   constructor() {
     super();
@@ -33,22 +36,39 @@ export class ProfileCardComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    counter++;
-    this.setProfileImage(`https://picsum.photos/seed/v-${counter}/400`);
+    //setup detail button
+    const btn = this.getBtnInfoElement();
+    if (btn) {
+      btn.addEventListener('click', () => {
+        this.toggleDetailView();
+      });
+    } else {
+      console.warn("Unable to setup profile-card's detail toggle button");
+    }
 
-    this.setTheme('blue');
+
+    //look for attributes
+    this.setTheme(this.getAttribute('theme'));
+    this.setFullName(this.getAttribute('name'));
+    this.setProfileImage(this.getAttribute('image'));
     
-
-    let index = 0;
-    const colorKeys = Object.getOwnPropertyNames(colors);
-    const setNextTheme = () => {
-      index = (index + 1) % colorKeys.length;
-      this.setTheme(colorKeys[index]);
-    }  
-
-    setInterval(() => setNextTheme(), 2000);
-    setNextTheme();
   }
+
+  //Invoked when an attribute is added, removed, or changed 
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    switch (name) {
+      case "theme":
+        this.setTheme(newValue);
+        break;
+      case "name":
+        this.setFullName(newValue);
+        break;
+      case "image":
+        this.setProfileImage(newValue);
+        break;
+    }
+  }
+
 
   
 
@@ -58,7 +78,7 @@ export class ProfileCardComponent extends HTMLElement {
   getTheme(): string {
     let ret: string | null = "";
 
-    const classList = this.getHeadingElement()?.classList;
+    const classList = this.getWrapperElement()?.classList;
     if (classList) {
       const keys = Object.getOwnPropertyNames(colors);
       for (let i=0; i<keys.length && !ret; i++) {
@@ -70,26 +90,25 @@ export class ProfileCardComponent extends HTMLElement {
 
     return ret;
   }
-  setTheme(name: string) {
-    const span = this.getHeadingElement();
-    if (span) {
+  setTheme(name: string | null) {
+    name = name || 'black'; //default
+    const wrapper = this.getWrapperElement();
+    if (wrapper) {
       const keys = Object.getOwnPropertyNames(colors);
       Object.getOwnPropertyNames(colors).forEach(key => {
-        span.classList.remove(key);
+        wrapper.classList.remove(key);
       });
       if (keys.includes(name)) {
-        span.classList.add(name);
+        wrapper.classList.add(name);
       }
     }
-  }
-  private getHeadingElement(): HTMLElement {
-    return this.shadowRoot?.querySelector('.heading') as HTMLElement;
   }
 
   getFullName(): string {
     return this.getFullNameElement()?.innerText;
   }
-  setFullName(name: string) {
+  setFullName(name: string | null) {
+    name = name || '';
     const span = this.getFullNameElement();
     if (span) {
       span.innerText = name;
@@ -102,7 +121,8 @@ export class ProfileCardComponent extends HTMLElement {
   getProfileImage(): string {
     return this.getProfileImageElement()?.src;
   }
-  setProfileImage(src: string) {
+  setProfileImage(src: string | null) {
+    src = src || '';
     const img = this.getProfileImageElement();
     if (img) {
       img.src = src;
@@ -113,6 +133,26 @@ export class ProfileCardComponent extends HTMLElement {
   }
   private getProfileImageElement(): HTMLImageElement {
     return this.shadowRoot?.querySelector('img.profile-image') as HTMLImageElement;
+  }
+
+  //public method to show the profile information.
+  //if showProfile is not provided (or null), then the 
+  //component's  is 
+  toggleDetailView(showProfile: boolean | null = null) {
+    this._isDetailView = typeof(showProfile) === 'boolean' ? showProfile : !this.isDetailView;
+
+    const wrapper = this.getWrapperElement();
+    wrapper?.classList.toggle("detail", this._isDetailView);
+}
+
+  private getBtnInfoElement(): HTMLElement {
+    return this.shadowRoot?.querySelector('.btn-info') as HTMLElement;
+  }
+  private getContentElement(): HTMLElement {
+    return this.shadowRoot?.querySelector('.content') as HTMLElement;
+  }
+  private getWrapperElement(): HTMLElement {
+    return this.shadowRoot?.querySelector('.wrapper') as HTMLElement;
   }
 }
 
