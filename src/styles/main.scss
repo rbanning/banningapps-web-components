@@ -44,7 +44,40 @@ footer {
   display: flex;
   flex-wrap: wrap;
   & > * {
-    margin: 0.5em;
-    border: solid 1px black;
+    margin: 1em;
   }
+}
+
+
+
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.header > .profile-image {
+  order: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.header > .full-name {
+  order: 2;
+  width: 100%;
+  border-left: solid 10px red;
+  margin-left: -10px;
+  background: red;
+}
+.header > .full-name::before, .header > .full-name::after {
+  content: ' ';
+  position: absolute;
+  top: -1em;
+  left: 0;
+  width: 0; 
+  height: 0; 
+  border-top-color: transparent;
+  border-right-color: #B71C1C;
+  border-bottom-color: #B71C1C;
+  border-left-color: transparent;
+  border: solid 0.5em;
 }
