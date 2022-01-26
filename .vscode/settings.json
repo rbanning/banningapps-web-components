@@ -20,9 +20,13 @@
   },
   "peacock.color": "#007fff",
   "cSpell.words": [
+    "autoprefixer",
     "banningapps",
     "browserslist",
     "Canyonlands",
+    "cssnano",
+    "postcss",
+    "postcssrc",
     "preact"
   ]
 }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Web Components - Expandable Details</title>
+    <link rel="icon" 
+        type="image/ico" 
+        href="/static/favicon.ico" />
+    <link rel="stylesheet" href="../styles/primary.css">
+  </head>
+<body>
+  <ba-site-header active="expandable-details"></ba-site-header>
+  <div class="primary-container">
+    <h1>Web Components</h1>
+    <section>
+      <h2>Expandable Details</h2>
+      <p class="mb-4"><code>ba-expandable-details</code></p>
+
+      <h3>Overview</h3>
+      <p>
+        The <code>ba-expandable-details</code> component is a basic Web Component 
+        that wraps the HTML <code>details</code> and <code>summary</code>
+        components.  It also demonstrates the use of <code>slot</code> elements
+        to place content from the innerHTML of the component into the shadow DOM.
+      </p>
+
+      <h3>Usage</h3>
+      <pre class="usage">
+  &lt;ba-expandable-details&gt;
+    &lt;span slot="heading"&gt;The Heading&lt;/span&gt;
+    &lt;span slot="content"&gt;
+        &lt;h3&gt;HTML Here&lt;/h3&gt;
+        &lt;p&gt;
+          You can put HTML element in the content!
+        &lt;/p&gt;
+    &lt;/span&gt;
+  &lt;/ba-expandable-details&gt;
+      </pre>
+      
+      <h3>Example</h3>
+      <div class="border-blue-100 border-2">
+        <h4 class="font-bold">Pricing Information</h4>
+
+        <ba-expandable-details>
+          <span slot="heading">Getting Started</span>
+          <span slot="content">
+            <p>
+              You can use our service for free but you are restricted to only 100 calls per day.
+            </p>
+          </span>
+        </ba-expandable-details>
+        <ba-expandable-details>
+          <span slot="heading">Start Up</span>
+          <span slot="content">
+            <p>
+              If you are just starting up, our entry paid tier is for you.  You do not have any
+              restrictions on the number of calls per day but requests are throttled above 1000 per day.
+              <em>Price: $25/month</em>
+            </p>
+          </span>
+        </ba-expandable-details>
+        <ba-expandable-details>
+          <span slot="heading">Business Class</span>
+          <span slot="content">
+            <p>
+              When you are ready for the big leagues, our middle paid tier is for you.  You do not have any
+              restrictions on the number of calls per day nor will you be throttled.
+              <em>Price: $75/month</em>
+            </p>
+          </span>
+        </ba-expandable-details>
+        <ba-expandable-details>
+          <span slot="heading">Enterprise Class</span>
+          <span slot="content">
+            <p>
+              If you need a better SLA with multiple servers offering better redundancy, 
+              our top paid tier is for you.  Plus, you get priority support!
+              <em>Price: call us</em>
+            </p>
+          </span>
+        </ba-expandable-details>
+      </div>
+
+    </section>
+
+    <div class="my-6">&nbsp;</div>
+  </div>
+
+  <script src="../app/app.ts" type="module"></script>
+  <script src="../app/expandable-details.app.ts" type="module"></script>
+  
+</body>
+</html>

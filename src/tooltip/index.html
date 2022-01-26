@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Web Components - Tooltip</title>
+    <link rel="icon" 
+        type="image/ico" 
+        href="/static/favicon.ico" />
+    <link rel="stylesheet" href="../styles/primary.css">
+  </head>
+<body>
+  <ba-site-header active="tooltip"></ba-site-header>
+  <div class="primary-container">
+    <h1>Web Components</h1>
+    <section>
+      <h2>Tooltip</h2>
+      <p class="mb-4"><code>ba-tooltip</code></p>
+
+      <h3>Overview</h3>
+      <p>
+        The <code>ba-tooltip</code> component is a basic Web Component 
+        that demonstrates how to ...
+        <ul class="list-disc list-inside">
+          <li>use attributes to control style (tip color and background)</li>
+          <li>use <code>&lt;template&gt;</code> to pass in HTML or basic <code>innerText</code> to pass in simple text</li>
+          <li>use public methods to expose functionality to the app</li>
+        </ul>
+      </p>
+
+      <h3>Usage</h3>
+      <pre class="usage">
+  &lt;ba-tooltip [tip_background] [tip_color]&gt;
+    Simple text to show in tooltip
+  &lt;/ba-tooltip&gt;
+or
+  &lt;ba-tooltip [tip_background] [tip_color]&gt;
+    &lt;template&gt;
+    HTML elements to show in tooltip
+    &lt;/template&gt;
+  &lt;/ba-tooltip&gt;
+      </pre>
+      
+      <h3>Example</h3>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        <ba-tooltip>This is a basic (default) tooltip</ba-tooltip>
+        Nisi eum corrupti suscipit soluta. Recusandae, 
+        <ba-tooltip id="fancy-tooltip" tip_background="#f0f8ff" tip_color="#FF5733">
+          <template>
+            <p style="font-weight: bold;">Fancy</p>
+            <p>This is the fancy tip that uses <code>&lt;template&gt;</code></p>
+          </template>
+        </ba-tooltip>
+        nostrum reprehenderit earum perspiciatis necessitatibus 
+        tempora odio aut tenetur magni quam quos placeat esse quasi expedita.
+      </p>
+      <div class="flex justify-between">
+        <div class="mx-2 p-2 border-2 border-blue-100">
+          <p>Change tip color and background using attributes...</p>
+          <div class="flex justify-between mb-4">
+            <div class="mx-2 p-2 border-2 border-blue-50">
+              <label for="v1-color" class="font-semibold block">Tip Color</label>
+              <input type="color" name="v1-color" id="v1-color" value="#000000"/>
+            </div>
+            <div class="mx-2 p-2 border-2 border-blue-50">
+              <label for="v1-bg" class="font-semibold block">Tip Background</label>
+              <input type="color" name="v1-bg" id="v1-bg" value="#ffffff"/>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn" id="toggleFancyTooltipAttr">Update Tip</button>
+          </div>          
+        </div>
+        <div class="mx-2 p-2 border-2 border-blue-100">
+          <p>Change tip color and background using component method...</p>
+          <div class="flex justify-between mb-4">
+            <div class="mx-2 p-2 border-2 border-blue-50">
+              <label for="v2-color" class="font-semibold block">Tip Color</label>
+              <input type="color" name="v2-color" id="v2-color" value="#000000"/>
+            </div>
+            <div class="mx-2 p-2 border-2 border-blue-50">
+              <label for="v2-bg" class="font-semibold block">Tip Background</label>
+              <input type="color" name="v2-bg" id="v2-bg" value="#ffffff"/>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn" id="toggleFancyTooltipMeth">Update Tip</button>
+          </div>          
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="../app/app.ts" type="module"></script>
+  <script src="../app/tooltip.app.ts" type="module"></script>
+  
+</body>
+</html>

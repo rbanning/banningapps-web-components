@@ -29,6 +29,10 @@ export class ProfileCardComponent extends HTMLElement {
   get isDetailView() { return this._isDetailView; }
   set isDetailView(value: boolean) { this.toggleDetailView(value); }
 
+  //in order for attributeChangedCallback to be fired, 
+  //we need to include which attributes should be monitored
+  static get observedAttributes() { return ['theme', 'name', 'image']; }
+
   constructor() {
     super();
     this.attachShadow({mode: 'open'});  //create the shadow root

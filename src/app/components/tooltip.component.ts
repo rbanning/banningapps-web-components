@@ -6,7 +6,9 @@ template.innerHTML = `
     .container {
       position: relative;
       display: inline-block;
-      font-family: Sans-Serif;
+      font-family: sans-serif;
+      line-height: 1;
+      transform: translateY(-0.25em);
       z-index: 2;
     }
     .icon {
@@ -20,8 +22,6 @@ template.innerHTML = `
       color: #f0ffff;
       background-color: #5f9ea0;
       cursor: pointer;
-      transform: translateY(-0.1em);
-      transition: 
     }
     .icon.off {
     
