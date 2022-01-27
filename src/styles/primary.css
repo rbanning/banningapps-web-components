@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+  width: 100%;
   @apply font-sans text-lg antialiased text-slate-500;
 }
 body::before {
@@ -10,12 +11,12 @@ body::before {
   background-image: url(../images/boxes.png);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top -10% right -50%;
   position: absolute;
   top: 0; right: 0;
-  width: 50%;
   height: 50vh;
-  opacity: 0.5;
+  opacity: 0.35;
+
+  @apply bg-center sm:bg-right-top w-3/5 sm:w-1/2;
 }
 
 section {
@@ -27,7 +28,7 @@ p {
 }
 
 a {
-  @apply text-rose-400;
+  @apply text-rose-400 no-underline;
 }
 
 h1 {
@@ -41,7 +42,11 @@ h3 {
 }
 
 .primary-container {
-  @apply container mx-auto my-2;
+  @apply container mx-auto my-2 overflow-hidden relative;
+}
+
+pre {
+  @apply overflow-auto;
 }
 
 .btn {
@@ -72,9 +77,14 @@ header.primary {
   @apply py-3;
 }
 
-header.primary > nav {
-  @apply flex;
+header.primary > nav.lg-screen {
+  @apply hidden sm:flex;
 }
+header.primary > nav.sm-screen {
+  @apply flex sm:hidden;
+}
+
+
 
 header.primary > nav > a {
   color: theme('colors.red.500');

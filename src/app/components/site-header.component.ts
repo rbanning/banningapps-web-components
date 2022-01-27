@@ -1,5 +1,7 @@
 /* NOTE: this component does not use Shadow DOM and it is only included to use with this sample site */
 
+import { PopupMenuComponent } from ".";
+
 export interface IHeaderLink {
   id: string;
   url: string;
@@ -33,7 +35,9 @@ const siteLinks: IHeaderLink[] = [
 
 const template = `
   <header class="primary">
-  <nav>
+  <nav class="lg-screen">
+  </nav>
+  <nav class="sm-screen">
   </nav>
   </header>
 `;
@@ -63,20 +67,41 @@ export class SiteHeaderComponent extends HTMLElement {
   }
 
   loadLinks(id?: string) {
-    //add the links
-    const linkHTML = siteLinks.map(link => {
+    const transformLink = (link: IHeaderLink) => {
       const css = [
         ...(link.css || []),
         (link.id === id ? 'active' : null)
       ].filter(Boolean);
 
       return `<a class="${css.join(' ')}" href="${link.url}">${link.label}</a>`
-    }).join(' ');
+    };
 
-    const nav = this.querySelector('nav');
-    if (nav) {
-      nav.innerHTML = linkHTML;
-    } 
+    //build the link arrays
+    const brandLinks = siteLinks.filter(link => link.css?.some(m => m ==='brand'))
+                          .map(transformLink);
+    const navLinks = siteLinks.filter(link => !link.css?.some(m => m ==='brand'))
+                          .map(transformLink);
+
+    const navArray = this.querySelectorAll('nav');
+    if (navArray) {
+      navArray.forEach(nav => {
+        if (nav.classList.contains('lg-screen')) {
+          nav.innerHTML = [
+            ...brandLinks,
+            ...navLinks
+          ].join(' ');
+        } else if (nav.classList.contains('sm-screen')) {
+          nav.innerHTML = [
+            ...brandLinks,
+            `<ba-popup-menu location_x="right: 0">
+              <template>
+              ${navLinks.join(' ')}
+              </template
+            </ba-popup-menu>`
+          ].join(' ');
+        }
+      });
+    }
   }
 }
 
