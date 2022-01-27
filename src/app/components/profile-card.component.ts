@@ -1,5 +1,12 @@
 import { buildProfileCardTemplate } from "./profile-card.component-template";
 
+export interface IProfile {
+  name: string;
+  theme?: string | null;
+  image: string;
+  content: string;
+}
+
 const colors = {
   red: '#EC4E20',
   green: '#A8C256',
@@ -90,7 +97,7 @@ export class ProfileCardComponent extends HTMLElement {
 
     return ret;
   }
-  setTheme(name: string | null) {
+  setTheme(name: string | null | undefined) {
     name = name || 'black'; //default
     const wrapper = this.getWrapperElement();
     if (wrapper) {
@@ -122,7 +129,7 @@ export class ProfileCardComponent extends HTMLElement {
     return this.getProfileImageElement()?.src;
   }
   setProfileImage(src: string | null) {
-    src = src || '';
+    src = src || 'https://picsum.photos/400'; //include a default image
     const img = this.getProfileImageElement();
     if (img) {
       img.src = src;
@@ -135,11 +142,11 @@ export class ProfileCardComponent extends HTMLElement {
     return this.shadowRoot?.querySelector('img.profile-image') as HTMLImageElement;
   }
 
-  setContent() {
-    const content = this.getContentElement();
+  setContent(html?: string) {
+    const content =  this.getContentElement();
     if (content) {
       const template = this.querySelector('template');
-      content.innerHTML = template?.innerHTML || this.innerHTML;
+      content.innerHTML = html || template?.innerHTML || this.innerHTML;
     }
   }
 
@@ -161,6 +168,16 @@ export class ProfileCardComponent extends HTMLElement {
   }
   private getWrapperElement(): HTMLElement {
     return this.shadowRoot?.querySelector('.wrapper') as HTMLElement;
+  }
+
+
+  setProfile(profile: IProfile) {
+    if (profile) {
+      this.setFullName(profile.name);
+      this.setProfileImage(profile.image);
+      this.setTheme(profile.theme);
+      this.setContent(profile.content);
+    }
   }
 }
 

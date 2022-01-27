@@ -17,6 +17,7 @@ export const buildProfileCardTemplate = (colors: any): HTMLTemplateElement => {
 
     const sizes = {
       width: '400px',
+      minWidth: '150px',
       height: '400px',
       ribbon: '1em'
     };
@@ -28,6 +29,7 @@ export const buildProfileCardTemplate = (colors: any): HTMLTemplateElement => {
           
           width: 100%;
           max-width: ${sizes.width};
+          min-width: ${sizes.minWidth};
           height: auto;
           max-height: ${sizes.height};
 
