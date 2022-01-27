@@ -187,7 +187,6 @@ export class PopupMenuComponent extends HTMLElement {
     if (menu) {
       menu.style.left = value?.left || '';
       menu.style.right = value?.right || '';
-      console.log("DEBUG: setLocationX", {value, styles: menu.style});
     }
   }
 
