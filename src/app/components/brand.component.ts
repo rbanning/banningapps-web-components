@@ -1,13 +1,15 @@
 const template = document.createElement('template');
 template.innerHTML = `
   <style>
-    font-weight: bold;
-    color: red;
+    span.brand {
+      font-weight: bold;
+      color: red;  
+    }
   </style>
   <span class="brand"></span>
 `;
 
-export class BrandComponent extends HTMLSpanElement {
+export class BrandComponent extends HTMLElement {
 
   constructor() {
     super();

@@ -26,6 +26,9 @@ p {
   @apply my-4;
 }
 
+a {
+  @apply text-rose-400;
+}
 
 h1 {
   @apply text-3xl text-blue-400;
