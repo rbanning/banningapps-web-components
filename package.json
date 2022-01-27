@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "parcel ./src/**/*.html",
     "watch": "parcel watch ./src/**/*.html",
-    "build": "parcel build ./src/**/*.html",
+    "build": "parcel build './src/**/*.html'",
     "start": "npm run serve && npm run watch",
     "test": "tsc --noEmit"
   },
