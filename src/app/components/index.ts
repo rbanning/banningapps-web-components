@@ -1,3 +1,4 @@
+import { defineBrandComponent } from './brand.component';
 import { defineExpandableDetailsComponent } from './expandable-details.component';
 import { defineProfileCardComponent } from './profile-card.component';
 import { defineSiteHeaderComponent } from './site-header.component';
@@ -9,9 +10,11 @@ export const defineComponents = () => {
   defineProfileCardComponent();
 
   defineSiteHeaderComponent();
+  defineBrandComponent();
 }
 
 export * from './tooltip.component';
 export * from './expandable-details.component';
 export * from './profile-card.component';
 export * from './site-header.component';
+export * from './brand.component';
