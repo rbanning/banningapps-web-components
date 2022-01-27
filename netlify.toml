@@ -1,6 +1,6 @@
 # example netlify.toml
 [build]
-  command = "parcel build './src/**/*.html'"
+  command = "parcel build './src/**/*.html' && cd dist && ls -lR > file_listing.txt"
   functions = "netlify/functions"
   publish = "dist"
 
