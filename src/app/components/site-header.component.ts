@@ -9,23 +9,23 @@ export interface IHeaderLink {
 const siteLinks: IHeaderLink[] = [
   {
     id: 'home',
-    url: './',
+    url: '/',
     label: 'Banning Applications',
     css: ['brand', 'flex-1']
   },
   {
     id: 'tooltip',
-    url: "./tooltip",
+    url: "/tooltip",
     label: "Tooltip"
   },
   {
     id: 'expandable-details',
-    url: './expandable-details',
+    url: '/expandable-details',
     label: 'Expandable Details'
   },
   {
     id: 'profile-card',
-    url: './profile-card',
+    url: '/profile-card',
     label: 'Profile Card'
   }
 ];
