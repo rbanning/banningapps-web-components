@@ -7,7 +7,7 @@ export const init = () => {
     {
       name: "Badlands",
       theme: "orange",
-      image: "parks/national-park-badlands.jpg",
+      image: "/parks/national-park-badlands.jpg",
       content: `
         <p><strong>South Dakota</strong></p>
         <p>
@@ -22,7 +22,7 @@ export const init = () => {
     {
       name: "Biscayne",
       theme: "blue",
-      image: "parks/national-park-biscayne.jpg",
+      image: "/parks/national-park-biscayne.jpg",
       content: `
         <p><strong>Florida</strong></p>
         <p>
@@ -36,7 +36,7 @@ export const init = () => {
     {
       name: "Carlsbad Caverns",
       theme: "red",
-      image: "parks/national-park-carlsbad-caverns.jpg",
+      image: "/parks/national-park-carlsbad-caverns.jpg",
       content: `
         <p><strong>New Mexico</strong></p>
         <p>
@@ -50,7 +50,7 @@ export const init = () => {
     {
       name: "Crater Lake",
       theme: "blue",
-      image: "parks/national-park-crater-lake.jpg",
+      image: "/parks/national-park-crater-lake.jpg",
       content: `
         <p><strong>Oregon</strong></p>
         <p>
@@ -65,7 +65,7 @@ export const init = () => {
     {
       name: "New River Gorge",
       theme: "green",
-      image: "parks/national-park-new-river-gorge.jpg",
+      image: "/parks/national-park-new-river-gorge.jpg",
       content: `
         <p><strong>West Virginia</strong></p>
         <p>
@@ -81,7 +81,7 @@ export const init = () => {
     {
       name: "Voyageurs",
       theme: "red",
-      image: "parks/national-park-voyageurs.jpg",
+      image: "/parks/national-park-voyageurs.jpg",
       content: `
         <p><strong>Minnesota</strong></p>
         <p>
